@@ -2,7 +2,10 @@
   <!-- Para crear el componente, se puede poner Vue, y por defecto se crea la estructura-->
   <h2>Counter!!!</h2>
   <p>{{counter}} <sup>2</sup> = {{ squareCounter }}</p>
-  <p>{{counter}} <sup>2</sup> = {{ squareCounter }}</p>
+  <div>
+      <button>+1</button>
+      <button>-1</button>
+  </div>
 </template>
 
 <script>
@@ -27,5 +30,17 @@ export default {
 </script>
 
 <style>
+
+button {
+    background-color: #64BB87;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 5px 15px;
+    transition: 0.3s ease-in-out;
+}
+
 
 </style>
