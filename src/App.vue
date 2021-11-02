@@ -1,15 +1,20 @@
 <template>
+  <!-- Esto no era posible de hacer en VUE2. En Vue2 no era posible tener más de un elemento root dentro del template. En VUE3 se reemplazó -->
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- SINTAXIS PERMITIDA para los componentes: KebalKase o PascalKase -->
+  <Counter/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// IMPORTAR COMPONENTE: import HelloWorld from './components/HelloWorld.vue'
+// También se puede escribir '@/components/HelloWorld.vue' que indica la carpeta source.
+// Los componentes no solo tienes que importarlo, sino indicarlo en la lista de "components".
+import Counter from './components/Counter.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Counter
   }
 }
 </script>
