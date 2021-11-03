@@ -2,7 +2,7 @@
   <!-- Esto no era posible de hacer en VUE2. En Vue2 no era posible tener más de un elemento root dentro del template. En VUE3 se reemplazó -->
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- SINTAXIS PERMITIDA para los componentes: KebalKase o PascalKase -->
-  <Counter :start="15"/> <!-- equivalente a v-bind: -->
+  <Counter :start="101"/> <!-- equivalente a v-bind: -->
   <!-- Para las props la sixtaxis permitida es KebalKase -->
 </template>
 

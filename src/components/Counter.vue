@@ -16,7 +16,10 @@ export default {
         start: {
             type: Number,
             required: true,
-            default: 200
+            default: 200,
+            validator (value) {
+                return value > 100;
+            }
         }
     },
     // name: 'Patito' // Se puede poner nombre a los componentes para identificarlos
