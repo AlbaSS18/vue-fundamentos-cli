@@ -3,8 +3,9 @@
   <h2>Counter!!!</h2>
   <p>{{counter}} <sup>2</sup> = {{ squareCounter }}</p>
   <div>
-      <button>+1</button>
-      <button>-1</button>
+      <button @click="increase">+1</button>
+      <!-- v-on: es sinónimo de @ -->
+      <button @click="decrease">-1</button>
   </div>
 </template>
 
@@ -19,6 +20,12 @@ export default {
     methods: {
         getSquare(){
             return this.counter * this.counter;
+        },
+        increase() {
+            this.counter ++; // No hace falta poner return
+        },
+        decrease(){
+            this.counter --;
         }
     },
     computed: {
@@ -39,6 +46,11 @@ button {
     cursor: pointer;
     margin: 0 5px;
     padding: 5px 15px;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #5aa67b;
     transition: 0.3s ease-in-out;
 }
 
