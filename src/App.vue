@@ -3,6 +3,7 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <!-- SINTAXIS PERMITIDA para los componentes: KebalKase o PascalKase -->
   <Counter/>
+  <Counter title="Salieron"/> <!-- Para las props la sixtaxis permitida es KebalKase -->
 </template>
 
 <script>

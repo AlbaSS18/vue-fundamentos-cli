@@ -1,6 +1,6 @@
 <template>
   <!-- Para crear el componente, se puede poner Vue, y por defecto se crea la estructura-->
-  <h2>Counter!!!</h2>
+  <h2>{{customTitle}}</h2>
   <p>{{counter}} <sup>2</sup> = {{ squareCounter }}</p>
   <div>
       <button @click="increase">+1</button>
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+    props: ['title'],
     // name: 'Patito' // Se puede poner nombre a los componentes para identificarlos
     data() {
         return {
@@ -31,6 +32,9 @@ export default {
     computed: {
         squareCounter(){
             return this.counter * this.counter;
+        },
+        customTitle(){
+            return this.title || 'Counter';
         }
     }
 }
