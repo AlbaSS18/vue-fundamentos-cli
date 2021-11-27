@@ -2,7 +2,7 @@
   <!-- Para crear el componente, se puede poner Vue, y por defecto se crea la estructura-->
   <h2>{{customTitle}} {{start}}</h2>
   <p>{{counter}} <sup>2</sup> = {{ squareCounter }}</p>
-  <div>
+  <div class="buttons-container">
       <button @click="increase">+1</button>
       <!-- v-on: es sinónimo de @ -->
       <button @click="decrease">-1</button>
@@ -15,7 +15,7 @@ export default {
         title: String,
         start: {
             type: Number,
-            required: true,
+            required: false,
             default: 200,
             validator (value) {
                 return value > 100;

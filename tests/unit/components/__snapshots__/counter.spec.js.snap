@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter component debe de hacer match con el snapshot 1`] = `
+<!-- Para crear el componente, se puede poner Vue, y por defecto se crea la estructura-->
+<h2>Counter 200</h2>
+<p>200 <sup>2</sup> = 40000</p>
+<div class="buttons-container"><button>+1</button><!-- v-on: es sinónimo de @ --><button>-1</button></div>
+`;
