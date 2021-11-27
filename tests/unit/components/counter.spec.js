@@ -7,17 +7,19 @@ import Counter from '@/components/Counter'
  * SHALLOWMOUNT: monta el componente actual.
  */
 describe('Counter component', () => {
+
+    let wrapper;
+
+    beforeEach(() => {
+        wrapper = shallowMount(Counter);
+    });
     
     xtest('debe de hacer match con el snapshot', () => {
-        const wrapper = shallowMount(Counter);
-
         expect(wrapper.html()).toMatchSnapshot();
         // Copia física del componente
     })
 
     test('h2 debe de tener el valor por defecto', ()=> {
-        const wrapper = shallowMount(Counter);
-
         expect(wrapper.find('h2').exists()).toBe(true); // Check if element exists in the DOM.
 
         const h2Value = wrapper.find('h2').text(); // Get the text in h2 tag
@@ -26,10 +28,6 @@ describe('Counter component', () => {
     })
 
     test('el valor por defecto debe de ser 200 en el p', ()=> {
-        
-        // Wrapper
-        const wrapper = shallowMount(Counter);
-
         // pTags
         // date-testid es un atributo que permite identificar los elementos html ya que si ponemos un class o un id, estos atributos podrían borrarse.
         const value = wrapper.find('[data-testid="counter"]').text();
@@ -40,19 +38,14 @@ describe('Counter component', () => {
     })
 
     test('debe incrementar y decrementar el valor del contador', async () => {
-        
-        const wrapper = shallowMount(Counter);
+        const [increaseBtn, decreaseBtn] = wrapper.findAll("button");
 
         // Increase
-        const increaseBtn = wrapper.find("button");
-        
         await increaseBtn.trigger('click');
         await increaseBtn.trigger('click');
         await increaseBtn.trigger('click');
 
         // Decrease
-        const decreaseBtn = wrapper.findAll("button").at(1);
-
         await decreaseBtn.trigger('click');
         await decreaseBtn.trigger('click');
 
