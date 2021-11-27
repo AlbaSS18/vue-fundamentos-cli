@@ -53,4 +53,16 @@ describe('Counter component', () => {
         expect(value).toBe("201");
 
     })
+
+
+    test('debe de establecer el valor por defecto', async () => {
+        console.log(wrapper.props()); // El valor de title siempre va a ser undefined porque lo que montamos es un componente independiente. Además no estamos montando el app.
+
+        const start = wrapper.props('start');
+        // También puedes hacer la desestrucuración {start} = wrapper.props();
+
+        const value = wrapper.find('[data-testid="counter"]').text();
+        expect(Number(value)).toBe(start);
+
+    })
 })
