@@ -31,10 +31,33 @@ describe('Counter component', () => {
         const wrapper = shallowMount(Counter);
 
         // pTags
-        const value = wrapper.findAll('[data-testid="counter"]').text();
+        // date-testid es un atributo que permite identificar los elementos html ya que si ponemos un class o un id, estos atributos podrían borrarse.
+        const value = wrapper.find('[data-testid="counter"]').text();
 
         //expect segundo p === 200
-        // expect(pTags.at(0).text()).toBe("200");
+        // expect(wrapper.findAll('p').at(1).text()).toBe("200");
         expect(value).toBe("200");
+    })
+
+    test('debe incrementar y decrementar el valor del contador', async () => {
+        
+        const wrapper = shallowMount(Counter);
+
+        // Increase
+        const increaseBtn = wrapper.find("button");
+        
+        await increaseBtn.trigger('click');
+        await increaseBtn.trigger('click');
+        await increaseBtn.trigger('click');
+
+        // Decrease
+        const decreaseBtn = wrapper.findAll("button").at(1);
+
+        await decreaseBtn.trigger('click');
+        await decreaseBtn.trigger('click');
+
+        const value = wrapper.find('[data-testid="counter"]').text();
+        expect(value).toBe("201");
+
     })
 })
