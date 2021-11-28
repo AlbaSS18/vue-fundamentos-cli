@@ -6,6 +6,18 @@ describe('Indecision component', () => {
     let wrapper;
     let clgSpy;
 
+    /* 
+        Node no tiene incluido el fetch. Por lo tanto, para quitar el warning que da las pruebas 
+        hay que hacer un mock de la función fetch que está dentro del objeto window. En el caso de node, se encuentra en global.
+    */
+    global.fetch = jest.fn(() => Promise.resolve({
+        json: () => Promise.resolve({
+            answer: 'yes',
+            forced: false,
+            image: 'https://yesno.wtf/assets/yes/0-c44a7789d54cbdcad867fb7845ff03ae.gif'
+        })
+    })); 
+
     beforeEach(() => {
         wrapper = shallowMount(Indecision);
         clgSpy = jest.spyOn(console, 'log');
@@ -42,11 +54,25 @@ describe('Indecision component', () => {
 
     })
 
-    test('pruebas en getAnswer', () => {
-        
+    test('pruebas en getAnswer', async () => {
+        await wrapper.vm.getAnswer();
+
+        const img = wrapper.find('img');
+
+        expect(img.exists()).toBeTruthy();
+        expect(wrapper.vm.img).toBe('https://yesno.wtf/assets/yes/0-c44a7789d54cbdcad867fb7845ff03ae.gif');
+        expect(wrapper.vm.answer).toBe('Sí!');
     })
 
-    test('pruebas en getAnswer - Fallo en el API', () => {
+    test('pruebas en getAnswer - Fallo en el API', async () => {
+
+        fetch.mockImplementationOnce(() => Promise.reject('API is down'))
+
+        await wrapper.vm.getAnswer();
+
+        const img = wrapper.find('img');
         
+        expect(img.exists()).toBeFalsy();
+        expect(wrapper.vm.answer).toBe('No se pudo cargar el API');
     })
 });
