@@ -9,6 +9,7 @@ describe('Indecision component', () => {
     beforeEach(() => {
         wrapper = shallowMount(Indecision);
         clgSpy = jest.spyOn(console, 'log');
+        jest.clearAllMocks(); // Limpia todos los mocks
     })
 
     test('debe de hacer match con el snapshot', () => {
@@ -26,8 +27,19 @@ describe('Indecision component', () => {
         expect(getAnswerSpy).not.toHaveBeenCalled();
     })
 
-    test('escribir símbolo de "?" debe de disparar el getAnswer', () => {
-        
+    test('escribir símbolo de "?" debe de disparar el getAnswer', async() => {
+        const getAnswerSpy = jest.spyOn(wrapper.vm, 'getAnswer');
+
+        const input = wrapper.find('input');
+        await input.setValue('Hola mundo?');
+
+        /* 
+            Si no tuviésemos el clearAllMocks(), esta prueba daría error (el resultado sería que se llamó dos veces), 
+            ya que tendríamos el console de la prueba anterior. 
+        */
+        expect(clgSpy).toHaveBeenCalledTimes(1); 
+        expect(getAnswerSpy).toHaveBeenCalled();
+
     })
 
     test('pruebas en getAnswer', () => {
